@@ -9,7 +9,7 @@ export_env_vars() {
             value=$(echo "$value" | tr -d '[:space:]')
             value=$(echo "$value" | tr -d "'" | tr -d "\"")
 
-            export "$key=$value"
+            [[ -z "${!key}" ]] && export "$key=$value"
         done < .env
     else
         echo ".env file not found"
